@@ -1,0 +1,18 @@
+import requests
+
+# URL raiz da API
+url = 'https://exemplo.com/api/'
+
+# Fazer a solicitação GET para a raiz da API
+response = requests.get(url)
+
+# Verificar o código de status da resposta
+if response.status_code == 200:
+    # A resposta foi bem-sucedida, então processamos os dados
+    data = response.json()
+    # Exibir a lista de endpoints disponíveis
+    endpoints = [endpoint for endpoint in data if endpoint != 'status']
+    print(f"Endpoints disponíveis: {endpoints}")
+else:
+    # A resposta não foi bem-sucedida, então exibimos o código de status
+    print(f"Erro: {response.status_code}")
