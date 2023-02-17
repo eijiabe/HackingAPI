@@ -1,0 +1,17 @@
+import requests
+
+# Endpoint de exemplo
+url = 'https://exemplo.com/api/endpoint'
+
+# Fazer a solicitação GET para o endpoint
+response = requests.get(url)
+
+# Verificar o código de status da resposta
+if response.status_code == 200:
+    # A resposta foi bem-sucedida, então processamos os dados
+    data = response.json()
+    # Exibir os dados de forma estruturada
+    print(json.dumps(data, indent=4))
+else:
+    # A resposta não foi bem-sucedida, então exibimos o código de status
+    print(f"Erro: {response.status_code}")
