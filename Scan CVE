@@ -1,0 +1,25 @@
+import requests
+
+# URL base da aplicação de API
+url = "https://api.exemplo.com/"
+
+# Lista de CVEs a serem verificados
+cve_list = [
+    "CVE-2021-12345",
+    "CVE-2021-23456",
+    "CVE-2021-34567"
+]
+
+# Loop através de cada CVE
+for cve in cve_list:
+    # Monta a URL completa para o endpoint que pode estar vulnerável
+    endpoint_url = url + "vulnerability/" + cve
+    
+    # Envia uma solicitação GET para o endpoint
+    response = requests.get(endpoint_url)
+    
+    # Verifica se a resposta inclui informações sobre a vulnerabilidade
+    if cve in response.text:
+        print("Aplicação de API está vulnerável a", cve)
+    else:
+        print("Aplicação de API não está vulnerável a", cve)
