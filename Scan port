@@ -1,0 +1,27 @@
+import socket
+
+# Endereço IP do servidor que hospeda a API
+ip_address = "127.0.0.1"
+
+# Lista de portas a serem verificadas
+port_list = [80, 443, 8080, 8888]
+
+# Loop através de cada porta
+for port in port_list:
+    # Cria um objeto de soquete
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    
+    # Define o tempo limite para a conexão em 1 segundo
+    sock.settimeout(1)
+    
+    # Tenta se conectar à porta atual
+    result = sock.connect_ex((ip_address, port))
+    
+    # Verifica se a porta está aberta
+    if result == 0:
+        print("Porta", port, "está aberta!")
+    else:
+        print("Porta", port, "não está aberta.")
+    
+    # Fecha o soquete
+    sock.close()
