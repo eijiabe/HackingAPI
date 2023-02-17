@@ -1,0 +1,29 @@
+import requests
+
+# URL base da aplicação de API
+url = "https://api.exemplo.com/"
+
+# Define o endpoint para pesquisa de CVEs no NVD
+cve_search_url = "https://services.nvd.nist.gov/rest/json/cves/1.0"
+
+# Parâmetros de pesquisa da API do NVD
+parameters = {
+    "keyword": url,
+    "resultsPerPage": 10,
+    "startIndex": 0
+}
+
+# Envia uma solicitação GET para a API do NVD
+response = requests.get(cve_search_url, params=parameters)
+
+# Verifica se a solicitação foi bem-sucedida
+if response.status_code == 200:
+    # Extrai as informações sobre as CVEs encontradas
+    cves = response.json()["result"]["CVE_Items"]
+    
+    # Verifica se há alguma CVE que afeta a aplicação de API
+    for cve in cves:
+        if url in str(cve):
+            print("A aplicação de API está vulnerável à", cve["cve"]["CVE_data_meta"]["ID"])
+else:
+    print("Não foi possível obter informações de vulnerabilidade da API do NVD. Erro:", response.status_code)
