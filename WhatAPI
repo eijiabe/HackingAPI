@@ -1,0 +1,14 @@
+import requests
+
+# Fazer a solicitação GET para a API
+response = requests.get('https://exemplo.com/api')
+
+# Obter informações da resposta
+api_name = response.headers.get('X-API-Name')
+api_version = response.headers.get('X-API-Version')
+
+# Imprimir informações da API
+if api_name and api_version:
+    print(f"A API sendo utilizada é {api_name} na versão {api_version}.")
+else:
+    print("Não foi possível determinar a API sendo utilizada.")
