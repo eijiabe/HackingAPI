@@ -1,0 +1,25 @@
+import requests
+
+# URL base do serviço de API
+url = "https://api.exemplo.com/"
+
+# Lista de endpoints a serem verificados
+endpoints = [
+    "endpoint1",
+    "endpoint2",
+    "endpoint3"
+]
+
+# Loop através de cada endpoint
+for endpoint in endpoints:
+    # Monta a URL completa para o endpoint atual
+    endpoint_url = url + endpoint
+    
+    # Envia uma solicitação GET para a URL
+    response = requests.get(endpoint_url)
+    
+    # Verifica se a solicitação foi bem-sucedida
+    if response.status_code == 200:
+        print("Endpoint", endpoint, "está disponível!")
+    else:
+        print("Endpoint", endpoint, "não está disponível. Erro:", response.status_code)
