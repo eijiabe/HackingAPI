@@ -1,0 +1,26 @@
+import http.client
+import logging
+
+# Configurar o logger
+logging.basicConfig(filename='api_requests.log', level=logging.DEBUG)
+
+# Endpoint da API
+url = 'https://exemplo.com/api/endpoint'
+
+# Criar conexão HTTP
+conn = http.client.HTTPSConnection('exemplo.com')
+
+# Enviar a solicitação GET
+conn.request('GET', url)
+
+# Obter a resposta da API
+response = conn.getresponse()
+
+# Ler os dados da resposta
+data = response.read()
+
+# Salvar a solicitação no arquivo de log
+logging.info(f"Solicitação GET para {url} com status {response.status}: {data}")
+
+# Fechar a conexão
+conn.close()
