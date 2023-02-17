@@ -1,0 +1,21 @@
+import requests
+
+# URL do serviço de API
+url = "https://api.exemplo.com/"
+
+# Parâmetros necessários para autenticar a sua solicitação
+params = {
+    "username": "seu_nome_de_usuário",
+    "password": "sua_senha"
+}
+
+# Envia uma solicitação POST para o serviço de API para autenticar
+response = requests.post(url, params)
+
+# Verifica se a solicitação foi bem-sucedida
+if response.status_code == 200:
+    # Extrai a chave API do corpo da resposta
+    api_key = response.json()["api_key"]
+    print("Sua chave API é:", api_key)
+else:
+    print("Não foi possível obter a chave API. Erro:", response.status_code)
