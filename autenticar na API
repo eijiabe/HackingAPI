@@ -15,3 +15,6 @@ if response.status_code == 200:
     print('Autenticado com sucesso. Token de acesso:', access_token)
 else:
     print('Falha na autenticação. Código de status HTTP:', response.status_code)
+
+
+
