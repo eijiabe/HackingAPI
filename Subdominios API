@@ -1,0 +1,21 @@
+import requests
+import subprocess
+
+# URL raiz da API
+url = 'https://exemplo.com/api/'
+
+# Fazer a solicitação GET para a raiz da API
+response = requests.get(url)
+
+# Verificar o código de status da resposta
+if response.status_code == 200:
+    # A resposta foi bem-sucedida, então obtemos o conteúdo da página
+    page_content = response.text
+    # Utilizar a ferramenta Sublist3r para encontrar subdomínios na página
+    subdomains = subprocess.check_output(["sublist3r", "-d", "exemplo.com", "-t", "10", "-o", "subdomains.txt"])
+    # Filtrar os subdomínios encontrados para aqueles que estão relacionados à API
+    api_subdomains = [subdomain for subdomain in subdomains.decode().split('\n') if subdomain in page_content]
+    print(f"Subdomínios associados à API: {api_subdomains}")
+else:
+    # A resposta não foi bem-sucedida, então exibimos o código de status
+    print(f"Erro: {response.status_code}")
