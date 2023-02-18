@@ -1,0 +1,17 @@
+import requests
+
+# URL da API para recuperar usuários
+url = 'https://exemplo.com/api/usuarios'
+
+# Faz uma solicitação HTTP GET para o endpoint de usuários da API
+response = requests.get(url)
+
+# Verifica se a solicitação foi bem-sucedida (status code 200 indica sucesso)
+if response.status_code == 200:
+    # A resposta da API é geralmente um objeto JSON, então decodifica para obter um dicionário Python
+    users = response.json()
+    # Imprime os usuários obtidos
+    print(users)
+else:
+    # Se houver um erro na solicitação, imprime o status code e a mensagem de erro
+    print(f'Erro na solicitação. Status code: {response.status_code}. Mensagem: {response.text}')
