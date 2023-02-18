@@ -1,0 +1,17 @@
+import requests
+
+# Define as informações de autenticação
+username = 'seu_usuario'
+password = 'sua_senha'
+
+# Define o endpoint de autenticação
+auth_endpoint = 'https://api.exemplo.com/auth'
+
+# Faz uma solicitação HTTP POST para autenticar e obter um token de acesso
+response = requests.post(auth_endpoint, data={'username': username, 'password': password})
+if response.status_code == 200:
+    # Obtém o token de acesso da resposta
+    access_token = response.json()['access_token']
+    print('Autenticação bem-sucedida. Token de acesso:', access_token)
+else:
+    print('Falha na autenticação. Código de status HTTP:', response.status_code)
