@@ -1,0 +1,27 @@
+import requests
+
+# URL da API para criar um novo usuário
+url = 'https://exemplo.com/api/usuarios'
+
+# Dados do novo usuário a serem incluídos no payload
+novo_usuario = {
+    'nome': 'John Doe',
+    'email': 'johndoe@exemplo.com',
+    'senha': 'minha_senha_segura'
+}
+
+# Cria um payload para a solicitação POST usando os dados do novo usuário
+payload = {
+    'usuario': novo_usuario
+}
+
+# Faz uma solicitação HTTP POST para criar um novo usuário
+response = requests.post(url, json=payload)
+
+# Verifica se a solicitação foi bem-sucedida (status code 201 indica sucesso na criação do recurso)
+if response.status_code == 201:
+    # Imprime a resposta da API, que pode incluir informações sobre o novo usuário criado
+    print(response.json())
+else:
+    # Se houver um erro na solicitação, imprime o status code e a mensagem de erro
+    print(f'Erro na solicitação. Status code: {response.status_code}. Mensagem: {response.text}')
